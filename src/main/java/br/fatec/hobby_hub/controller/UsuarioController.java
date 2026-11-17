@@ -1,5 +1,6 @@
 package br.fatec.hobby_hub.controller;
 
+import br.fatec.hobby_hub.dto.AlterarSenhaDTO;
 import br.fatec.hobby_hub.dto.EsqueciSenhaDTO;
 import br.fatec.hobby_hub.dto.LoginDTO;
 import br.fatec.hobby_hub.dto.RedefinirSenhaDTO;
@@ -42,6 +43,12 @@ public class UsuarioController {
     @PutMapping("/{id}")
     public ResponseEntity<UsuarioRespostaDTO> alterarDados(@PathVariable Long id, @RequestBody @Valid UsuarioAtualizacaoDTO dto) {
         return ResponseEntity.ok(service.alterarDados(id, dto));
+    }
+
+    @PatchMapping("/{id}/senha")
+    public ResponseEntity<Map<String, String>> alterarSenha(@PathVariable Long id, @RequestBody @Valid AlterarSenhaDTO dto) {
+        service.alterarSenha(id, dto);
+        return ResponseEntity.ok(Map.of("mensagem", "Senha alterada com sucesso!"));
     }
 
     @DeleteMapping("/{id}")

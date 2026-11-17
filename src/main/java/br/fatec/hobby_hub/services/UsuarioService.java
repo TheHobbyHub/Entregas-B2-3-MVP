@@ -1,5 +1,6 @@
 package br.fatec.hobby_hub.services;
 
+import br.fatec.hobby_hub.dto.AlterarSenhaDTO;
 import br.fatec.hobby_hub.dto.RedefinirSenhaDTO;
 import br.fatec.hobby_hub.dto.UsuarioAtualizacaoDTO;
 import br.fatec.hobby_hub.dto.UsuarioCadastroDTO;
@@ -61,9 +62,31 @@ public class UsuarioService {
         Usuario usuario = repository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
 
+        if (repository.existsByEmailAndIdNot(dto.email(), id)) {
+            throw new RuntimeException("Email já cadastrado");
+        }
+
         usuario.setNome(dto.nome());
+        usuario.setSobrenome(dto.sobrenome());
+        usuario.setEmail(dto.email());
         usuario.setTelefone(dto.telefone());
+        usuario.setDataNascimento(dto.dataNascimento());
         return new UsuarioRespostaDTO(repository.save(usuario));
+    }
+
+    public void alterarSenha(Long id, AlterarSenhaDTO dto) {
+        Usuario usuario = repository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
+
+        if (!passwordEncoder.matches(dto.senhaAtual(), usuario.getSenha())) {
+            throw new RuntimeException("Senha atual incorreta");
+        }
+        if (passwordEncoder.matches(dto.novaSenha(), usuario.getSenha())) {
+            throw new RuntimeException("A nova senha deve ser diferente da senha atual");
+        }
+
+        usuario.setSenha(passwordEncoder.encode(dto.novaSenha()));
+        repository.save(usuario);
     }
 
     public void excluir(Long id) {

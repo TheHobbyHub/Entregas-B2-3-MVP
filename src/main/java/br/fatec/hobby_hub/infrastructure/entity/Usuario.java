@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -34,6 +35,8 @@ public class Usuario {
 
     @Column(nullable = false)
     private String telefone;
+
+    private LocalDate dataNascimento;
 
     @Column(nullable = false)
     private String senha;
