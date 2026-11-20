@@ -1,8 +1,7 @@
 -- Usuários de teste do HobbyHub (senha de ambos: Hobby@2026).
 --   assinante@hobbyhub.com : Plano Plus ativo, cartão cadastrado e 3 faturas no histórico
 --   visitante@hobbyhub.com : conta sem assinatura, para testar o fluxo de escolha de plano
--- Rode depois de subir a API (as tabelas são criadas por ela) e de cadastrar os planos.
--- Pode ser rodado mais de uma vez: o que já existe não é duplicado.
+-- Roda toda vez que a API sobe, depois dos planos (01-planos.sql). O que já existe não é duplicado.
 
 -- Hash BCrypt de "Hobby@2026" (o mesmo formato que a API grava no cadastro)
 INSERT INTO tb_usuarios (nome, sobrenome, email, cpf, telefone, data_nascimento, senha, status, saldo_creditos)

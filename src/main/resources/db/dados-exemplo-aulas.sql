@@ -1,7 +1,7 @@
--- Dados de exemplo para testar o agendamento de aulas.
--- As tabelas são criadas pelo Hibernate (ddl-auto=update) ao subir a aplicação; rode este script depois disso.
--- Requer que tb_planos já tenha planos cadastrados.
+-- Script MANUAL para zerar as aulas de exemplo. Não é preciso rodá-lo para usar o sistema: a API já cadastra
+-- as aulas sozinha ao subir (db/inicial). Use só se quiser recomeçar os dados de aula do zero.
 -- ATENÇÃO: apaga e recria todas as categorias, endereços, ateliês, instrutores, aulas, horários e agendamentos.
+-- Depois de rodar, reinicie a API para os horários semanais (db/inicial/04-horarios-recorrentes.sql) voltarem.
 
 TRUNCATE tb_agendamentos, tb_horarios_aula, tb_aulas_planos, tb_aulas, tb_instrutores, tb_parceiros,
          tb_enderecos, tb_categorias RESTART IDENTITY CASCADE;

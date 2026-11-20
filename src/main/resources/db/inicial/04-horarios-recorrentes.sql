@@ -1,6 +1,5 @@
 -- Horários semanais para todas as aulas de exemplo, de amanhã até 31/08/2027.
--- Rode depois de dados-exemplo-aulas.sql (que cria as aulas, mas só com horários para os próximos dias).
--- Não apaga nada e pode ser rodado mais de uma vez: horários que já existem não são duplicados.
+-- Roda toda vez que a API sobe, depois das aulas (03-aulas-exemplo.sql). Horários que já existem não são duplicados.
 -- Para estender o período, troque a data final no generate_series.
 
 INSERT INTO tb_horarios_aula (aula_id, data_hora, capacidade)
