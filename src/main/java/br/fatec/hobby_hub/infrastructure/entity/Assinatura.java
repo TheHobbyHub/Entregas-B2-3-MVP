@@ -36,4 +36,14 @@ public class Assinatura {
 
     @Column(nullable = false)
     private String status;
+
+    // Downgrade escolhido pelo usuário: passa a valer na próxima renovação
+    @ManyToOne
+    @JoinColumn(name = "plano_agendado_id")
+    private Plano planoAgendado;
+
+    // Cancelada pelo usuário: continua ATIVA até a data de vencimento e não renova.
+    // O default no banco permite criar a coluna em tabelas que já têm assinaturas
+    @Column(nullable = false, columnDefinition = "boolean default false")
+    private Boolean cancelamentoAgendado = false;
 }

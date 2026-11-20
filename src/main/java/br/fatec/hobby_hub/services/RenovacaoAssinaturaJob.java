@@ -18,9 +18,9 @@ public class RenovacaoAssinaturaJob {
     @EventListener(ApplicationReadyEvent.class)
     @Scheduled(cron = "0 0 0 * * *")
     public void renovar() {
-        int renovadas = assinaturaService.renovarAssinaturasVencidas();
-        if (renovadas > 0) {
-            log.info("{} assinatura(s) renovada(s) automaticamente", renovadas);
+        int processadas = assinaturaService.renovarAssinaturasVencidas();
+        if (processadas > 0) {
+            log.info("{} assinatura(s) vencida(s) processada(s): renovadas ou encerradas por cancelamento", processadas);
         }
     }
 }
